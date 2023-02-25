@@ -3,13 +3,15 @@ import {Box,Flex,HStack,Link,IconButton,Icon,Text,useDisclosure,Button,Stack,use
 import { Link as ReactLink } from 'react-router-dom';
 import {HamburgerIcon,CloseIcon,MoonIcon,SunIcon} from '@chakra-ui/icons';
 import {GiBalloons} from 'react-icons/gi';
+import {HiShoppingCart} from 'react-icons/hi'
 
 //defining the links
 const links =[
     {linkName:'Products',path:'/products'},
-    {linkName:'ShoppingCart',path:'/cart'}
+    {linkName:<Icon as={HiShoppingCart}  h='6' w='6'  />,path:'/cart'}
 ];
 
+//Link comp in the navbar(products,cart)
 const NavLink = ({path,children})=>{
     // console.log(children);
    return <Link as={ReactLink} to={path} px='2' py='2' rounded='md' 
