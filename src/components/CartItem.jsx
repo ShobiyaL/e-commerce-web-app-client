@@ -31,7 +31,7 @@ const CartItem = ({cartItem}) => {
             })
         }
         </Select>
-        <Text fontWight='bold'> ₹{price}</Text>
+        <Text fontWeight='bold'> ₹{price}</Text>
         <CloseButton
          onClick={()=>{
           // console.log(id)

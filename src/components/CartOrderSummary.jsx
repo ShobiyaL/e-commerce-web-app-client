@@ -31,14 +31,14 @@ const CartOrderSummary = ()=>{
             <Text fontWeight='medium'>
                 {
                     subtotal <=10000 ? (standardShipping) : (
-                        <Badge rounded='full' px='2' fontSixe='0.8em' colorScheme={'green'}>Free</Badge>
+                        <Badge rounded='full' px='2' fontSize='0.8em' colorScheme={'green'}>Free</Badge>
                     )
                 }
             </Text>
         </Flex>
         <Flex justify='space-between'>
         <Text fontSize='lg' fontWeight='bold'>Total</Text>
-<Text fontSize='lg' fontWeight='bold'>₹{subtotal <=10000 ? (subtotal + Number(standardShipping)) : subtotal}</Text>
+<Text fontSize='lg' fontWeight='bold'>₹{subtotal <=10000 ? (Number(subtotal) + Number(standardShipping)) : subtotal}</Text>
         </Flex>
       </Stack>
       <Button as={ReactLink}

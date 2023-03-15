@@ -86,7 +86,7 @@ const ProductScreen = () => {
                     </Heading>
                     <Stack spacing={5}>
                         <Box>
-                            <Text fontSize='xl'>₹{product.price}</Text>
+                            <Text fontSize='xl'>${product.price}</Text>
                             <Flex>
                                 <HStack spacing='2px'>
                                     <StarIcon color='orange.500'/>

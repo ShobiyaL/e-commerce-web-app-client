@@ -1,0 +1,47 @@
+import axios from 'axios';
+import {setError,addShippingAddress,clearOrder,orderCreation} from '../slices/order';
+
+//address 
+export const setShippingAddress = (data) => (dispatch)=>{
+    dispatch(addShippingAddress(data));   
+}
+
+export const setShippingAddressError = (value) => (dispatch)=>{
+    dispatch(setError(value));   
+}
+
+export const createOrder = (order) => async(dispatch,getState)=>{
+    console.log(order)
+   const {
+    order:{shippingAddress},
+    user:{userInfo},
+   } = getState();
+
+//   console.log(userInfo.token)
+
+   const preparedOrder ={...order,shippingAddress};
+
+   try {
+    const config = {
+        headers:{
+            Authorization: `Bearer ${userInfo.token}`,
+            'Content-Type': 'application/json'
+        }
+    }
+    const {data} = await axios.post('http://localhost:8001/api/protected/orders/createOrder',
+    preparedOrder,
+    config)
+    console.log(data);
+dispatch(orderCreation(data))
+   } catch (error) {
+    console.log(error)
+       dispatch(setError(
+           error.response && error.response.data.message ? error.response.data.message :
+            error.message?error.message : "Error"
+       ))
+   }
+}
+
+export const resetOrder = () => ( dispatch)=>{
+    dispatch(clearOrder())
+   }
