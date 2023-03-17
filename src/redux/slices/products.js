@@ -4,13 +4,14 @@ const initialState ={
     loading:false,
     error:null,
     products:[],
-    product:null
+    product:null,
+    reviewSend:false,
 };
 
 export const productsSlice = createSlice({
     name:'products',
     initialState,
-    //to update the state in the store based on the actions passed in the dispatch function
+    //to update the state in the store based on the actions passed from the dispatch function
     reducers:{
         setLoading:(state)=>{
             state.loading = true;
@@ -25,14 +26,24 @@ export const productsSlice = createSlice({
             state.loading = false;
         },
         setProduct:(state,{payload})=>{
+           
             state.product = payload;
             state.loading=false;
             state.error=null;
+        },
+        productReviewed:(state)=>{
+            state.loading= false;
+            state.error=null;
+            state.reviewSend=true;
+        },
+        resetError:(state)=>{
+            state.error=null;
+            state.reviewSend=false;
         }
     }
 });
 
-export const {setLoading,setProducts,setError,setProduct} = productsSlice.actions;
+export const {setLoading,setProducts,setError,setProduct,productReviewed,resetError} = productsSlice.actions;
 
 export default  productsSlice.reducer;
 

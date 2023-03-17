@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {setError,addShippingAddress,clearOrder,orderCreation} from '../slices/order';
+import {setError,addShippingAddress,clearOrder} from '../slices/order';
 
 //address 
 export const setShippingAddress = (data) => (dispatch)=>{
@@ -11,7 +11,7 @@ export const setShippingAddressError = (value) => (dispatch)=>{
 }
 
 export const createOrder = (order) => async(dispatch,getState)=>{
-    console.log(order)
+    // console.log(order)
    const {
     order:{shippingAddress},
     user:{userInfo},
@@ -20,7 +20,7 @@ export const createOrder = (order) => async(dispatch,getState)=>{
 //   console.log(userInfo.token)
 
    const preparedOrder ={...order,shippingAddress};
-
+// console.log(preparedOrder);
    try {
     const config = {
         headers:{
@@ -31,8 +31,8 @@ export const createOrder = (order) => async(dispatch,getState)=>{
     const {data} = await axios.post('http://localhost:8001/api/protected/orders/createOrder',
     preparedOrder,
     config)
-    console.log(data);
-dispatch(orderCreation(data))
+    console.log(data,"orders placed");
+
    } catch (error) {
     console.log(error)
        dispatch(setError(

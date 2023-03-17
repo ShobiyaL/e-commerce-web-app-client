@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Box,Flex,Heading,Text,Stack,Button,useColorModeValue as mode, Badge} from '@chakra-ui/react';
+import {Box,Flex,Heading,Text,Stack,Button,useColorModeValue as mode, Badge, useToast} from '@chakra-ui/react';
 import {FaArrowRight} from 'react-icons/fa';
 import {useSelector} from 'react-redux';
 import {Link as ReactLink,useNavigate} from 'react-router-dom'
@@ -10,9 +10,15 @@ const CartOrderSummary = ()=>{
  const cartInfo = useSelector((state)=>state.cart);
  const {subtotal} = cartInfo;
  const navigate = useNavigate();
+ const toast = useToast()
+const user = useSelector ((state)=>state.user)
+const {userInfo} = user
 
  let checkoutHandler =()=>{
     setButtonLoading(true);
+    if(!userInfo){
+      toast({description:'You are not logged in.Login to proceed',status:'info',isClosable:true,position:'top'})
+    }
     navigate('/checkout')
  }
    return(

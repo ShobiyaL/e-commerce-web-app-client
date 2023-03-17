@@ -22,17 +22,14 @@ export const orderSlice = createSlice({
             state.shippingAddress =payload;
             state.loading = false;
         },
-        orderCreation:(state,{payload})=>{
-            console.log(payload)
-            state.orderInfo=payload
-        },
+        
         clearOrder:(state)=>{
             state=initialState
         }
     }
 })
 
-export const {setLoading, setError,addShippingAddress,clearOrder,orderCreation} = orderSlice.actions;
+export const {setLoading, setError,addShippingAddress,clearOrder} = orderSlice.actions;
 
 export default orderSlice.reducer;
 

@@ -37,15 +37,15 @@ const RazorPayButton = ({total,onPaymentSuccess,disabled}) => {
         return
      }
 
- console.log(amount)
+//  console.log(amount)
 
-     const {data:{paymentOrder}} = await axios.post('http://localhost:8001/api/public/payment/order',{amount:amount})
-    // console.log(paymentOrder)
+     const {data:{paymentOrder}} = await axios.post('http://localhost:8001/api/public/payment',{amount:amount})
+     console.log(paymentOrder,"gives id,currency etc")
 
         const options = {
             
             "key": process.env.RZP_KEY_ID, // Enter the Key ID generated from the Dashboard
-            "amount": paymentOrder.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "amount":Number( paymentOrder.amount), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency":paymentOrder.currency,
             "name": "gadgets",
             "description": "Test Transaction",
@@ -56,7 +56,7 @@ const RazorPayButton = ({total,onPaymentSuccess,disabled}) => {
                 alert(response.razorpay_payment_id);
                 // alert(response.razorpay_order_id);
                 // alert(response.razorpay_signature)
-                onPaymentSuccess(response)
+                  onPaymentSuccess(response);
             },
             // "prefill": {
             //     "name": "Gaurav Kumar",

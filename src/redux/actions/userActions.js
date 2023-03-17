@@ -1,6 +1,6 @@
 import axios from "axios";
 import {setLoading,setError,userLogin, userLogout,userRegister
-,updateUserProfile,resetUpdate} from '../slices/user';
+,updateUserProfile,resetUpdate,setUserOrders} from '../slices/user';
 
 export const login = (email,password) => async(dispatch)=>{
      dispatch(setLoading(true))
@@ -82,4 +82,28 @@ export const updateProfile = (id,name,email)=> async(dispatch,getState)=>{
 
 export const resetUpdateSuccess = ()=> async(dispatch)=>{
     dispatch(resetUpdate());
+}
+
+export const getUserOrders = ()=> async(dispatch,getState)=>{
+    dispatch(setLoading(true))
+
+    const {user:{ userInfo },} = getState()
+    
+    try{
+        const config = {
+            headers:{
+                Authorization: `Bearer ${userInfo.token}`,
+                'Content-Type': 'application/json'
+            }
+        }
+    const {data} = await axios.get(`http://localhost:8001/api/protected/orders/users/${userInfo._id}`,config)
+    console.log(data,"orders placed by the users")
+    dispatch(setUserOrders(data))
+}catch(error){
+        console.log(error)
+        dispatch(setError(
+            error.response && error.response.data.message ? error.response.data.message :
+             error.message?error.message : "Error"
+        )) 
+    }
 }

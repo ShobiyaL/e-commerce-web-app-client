@@ -27,7 +27,7 @@ const Rating = ({rating,numberOfReviews})=>{
 }
 
 const ProductCard = ({product}) => {
- 
+//  console.log(product)
   const toast = useToast();
 
  const dispatch = useDispatch();
@@ -75,7 +75,7 @@ const ProductCard = ({product}) => {
     }
     </Box>
     <Flex mt='1' justifyContent='space-between' alignContent='center'>
-     <Link as={ReactLink} to={`/product/₹{product._id}`} pt='2' cursor='pointer'>
+     <Link as={ReactLink} to={`/products/${product._id}`} pt='2' cursor='pointer'>
         <Box fontSize='xl' fontWeight='semibold' lineHeight='tight'>
           {product.name}
         </Box>
@@ -94,6 +94,7 @@ const ProductCard = ({product}) => {
 <Tooltip label='Add to cart'  fontSize='1.2em'>
         <Button 
         variant='ghost'
+        
         isDisabled = {product.stock <=0}
         display={'flex'}
         onClick={()=>addToCart(product._id)}> 

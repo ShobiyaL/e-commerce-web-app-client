@@ -104,7 +104,7 @@ const Navbar = () => {
                         <CgProfile/>
                         <Text ml='2'>Profile</Text>
                         </MenuItem>
-                        <MenuItem as={ReactLink} to='/your-orders'>
+                        <MenuItem as={ReactLink} to='/user-orders'>
                         <MdLocalShipping/>
                         <Text ml='2'>Your orders</Text>
                         </MenuItem>

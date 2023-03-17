@@ -47,6 +47,7 @@ const total = useCallback(
 
     const onPaymentSuccess = async(payment_data)=>{
       onSuccessOpen()
+      alert('success')
        console.log(payment_data,"from the razorpay button")
       dispatch(createOrder({
         orderItems:cart,
@@ -57,8 +58,8 @@ const total = useCallback(
         totalPrice:total(),
         userInfo,
       }))
-      dispatch(resetOrder())
-      dispatch(resetCart())
+       dispatch(resetOrder())
+       dispatch(resetCart())
       //open success modal
     }
     
