@@ -1,5 +1,5 @@
 import React from 'react'
-import {Box,Flex,HStack,useToast,Link,IconButton,Icon,Text,useDisclosure,Button,Stack,useColorModeValue,useColorMode,Menu, MenuButton, MenuList, MenuItem, MenuDivider} from '@chakra-ui/react';
+import {Box,Flex,HStack,useToast,Link,IconButton,Icon,Text,useDisclosure,Button,Stack,useColorModeValue,useColorMode,Menu, MenuButton, MenuList, MenuItem, MenuDivider, Spacer} from '@chakra-ui/react';
 import { Link as ReactLink } from 'react-router-dom';
 import {HamburgerIcon,CloseIcon,MoonIcon,SunIcon, ChevronDownIcon} from '@chakra-ui/icons';
 import {GiBalloons} from 'react-icons/gi';
@@ -7,7 +7,7 @@ import {HiShoppingCart} from 'react-icons/hi'
 import {useDispatch,useSelector } from 'react-redux';
 import { logout } from '../redux/actions/userActions';
 import {CgProfile} from 'react-icons/cg';
-import {MdLocalShipping,MdLogout} from 'react-icons/md';
+import {MdLocalShipping,MdLogout, MdOutlineAdminPanelSettings} from 'react-icons/md';
 
 const ShoppingCart = ()=>{
     const cartInfo = useSelector((state)=>state.cart);
@@ -109,6 +109,21 @@ const Navbar = () => {
                         <Text ml='2'>Your orders</Text>
                         </MenuItem>
                         <MenuDivider/>
+                        {
+                            userInfo.isAdmin === 'true' && (
+                                <>
+                                
+                                <MenuItem as={ReactLink} to='/admin-console'>
+                        <MdOutlineAdminPanelSettings/>
+                        <Text ml='2'>Admin Console</Text>
+                        
+                        </MenuItem>
+                        <MenuDivider/>
+
+                                </>
+                            )
+                        }
+                       
                         <MenuItem onClick={logoutHandler}>
                         <MdLogout/>
                         <Text ml='2'>Logout</Text>
