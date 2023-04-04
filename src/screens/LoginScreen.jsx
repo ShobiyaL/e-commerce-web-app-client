@@ -18,7 +18,7 @@ const LoginScreen = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    console.log(location.state)
+    // console.log(location.state)
     const redirect = '/products';
     const toast = useToast();
 
@@ -52,7 +52,7 @@ const LoginScreen = () => {
       }}
       validationSchema={validate }
       onSubmit = {(values)=>{
-        console.log(values)
+        // console.log(values)
          dispatch(login(values.email, values.password))
       }}
     >

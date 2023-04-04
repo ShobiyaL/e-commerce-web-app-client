@@ -10,7 +10,7 @@ export const login = (email,password) => async(dispatch)=>{
             'Content-Type': 'application/json'
         }
     }
-    const {data} = await axios.post('http://localhost:8001/api/public/users/login',
+    const {data} = await axios.post('https://e-commerce-web-app-server.vercel.app/api/public/users/login',
     {email,password},
      config)
     dispatch(userLogin(data))
@@ -38,7 +38,7 @@ export const register = (name,email,password)=> async(dispatch)=>{
            'Content-Type': 'application/json'
        }
    }
-   const {data} = await axios.post('http://localhost:8001/api/public/users/register',
+   const {data} = await axios.post('https://e-commerce-web-app-server.vercel.app/api/public/users/register',
    {name,email,password},
     config)
    dispatch(userRegister(data))
@@ -64,7 +64,7 @@ export const updateProfile = (id,name,email)=> async(dispatch,getState)=>{
            'Content-Type': 'application/json'
        }
    }
-   const {data} = await axios.put(`http://localhost:8001/api/protected/users/updateProfile/${id}`,
+   const {data} = await axios.put(`https://e-commerce-web-app-server.vercel.app/api/protected/users/updateProfile/${id}`,
    {_id:id,name,email},
     config)
  
@@ -96,7 +96,7 @@ export const getUserOrders = ()=> async(dispatch,getState)=>{
                 'Content-Type': 'application/json'
             }
         }
-    const {data} = await axios.get(`http://localhost:8001/api/protected/orders/users/${userInfo._id}`,config)
+    const {data} = await axios.get(`https://e-commerce-web-app-server.vercel.app/api/protected/orders/users/${userInfo._id}`,config)
     console.log(data,"orders placed by the users")
     dispatch(setUserOrders(data))
 }catch(error){

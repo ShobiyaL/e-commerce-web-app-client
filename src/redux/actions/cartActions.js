@@ -4,7 +4,7 @@ import {setLoading,setError,addCartItem,removeCartItem,setExpressShipping,clearC
 export const addItemToCart = (id,qty) => async (dispatch)=>{
     dispatch(setLoading(true));
     try{
-        const {data} = await axios.get(`http://localhost:8001/api/public/products/${id}`);
+        const {data} = await axios.get(`https://e-commerce-web-app-server.vercel.app/api/public/products/${id}`);
         const itemsToAdd = {
             id:data._id,
             name:data.name,

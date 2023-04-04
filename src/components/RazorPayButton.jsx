@@ -39,7 +39,7 @@ const RazorPayButton = ({total,onPaymentSuccess,disabled}) => {
 
 //  console.log(amount)
 
-     const {data:{paymentOrder}} = await axios.post('http://localhost:8001/api/public/payment',{amount:amount})
+     const {data:{paymentOrder}} = await axios.post('https://e-commerce-web-app-server.vercel.app/api/public/payment',{amount:amount})
      console.log(paymentOrder,"gives id,currency etc")
 
         const options = {

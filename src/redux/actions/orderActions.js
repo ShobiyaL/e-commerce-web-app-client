@@ -28,7 +28,7 @@ export const createOrder = (order) => async(dispatch,getState)=>{
             'Content-Type': 'application/json'
         }
     }
-    const {data} = await axios.post('http://localhost:8001/api/protected/orders/createOrder',
+    const {data} = await axios.post('https://e-commerce-web-app-server.vercel.app/api/protected/orders/createOrder',
     preparedOrder,
     config)
     console.log(data,"orders placed");

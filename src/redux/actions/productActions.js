@@ -6,7 +6,7 @@ import {setProducts,setLoading,setError,setProduct,productReviewed,resetError} f
 export const getProducts = ()=> async (dispatch)=>{
     dispatch(setLoading(true))
     try {
-        const {data}= await axios.get('http://localhost:8001/api/public/products');
+        const {data}= await axios.get('https://e-commerce-web-app-server.vercel.app/api/public/products');
         dispatch(setProducts(data))
     } catch (error) {
         console.log(error)
@@ -22,7 +22,7 @@ export const getProduct = (id) => async(dispatch)=>{
     dispatch(setLoading(true));
     try {
        
-        const {data}= await axios.get(`http://localhost:8001/api/public/products/${id}`);
+        const {data}= await axios.get(`https://e-commerce-web-app-server.vercel.app/api/public/products/${id}`);
         // console.log(data)
         dispatch(setProduct(data))
     } catch (error) {
@@ -45,7 +45,7 @@ export const createProductReview = (productId, userId, comment, rating, title)=>
            'Content-Type': 'application/json'
        }
    }
-   const {data} = await axios.post(`http://localhost:8001/api/protected/products/reviews/${productId}`,
+   const {data} = await axios.post(`https://e-commerce-web-app-server.vercel.app/api/protected/products/reviews/${productId}`,
    {comment, userId, rating, title},
     config)
  localStorage.setItem('userInfo', JSON.stringify(data));
